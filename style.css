@@ -7,7 +7,7 @@ body {
 .calculator {
     width: 400px;
     background-color: #AAAAAA;
-    padding: 7.5px;
+    padding: 10px;
     margin-top: 15px;
     border: 2px solid black; 
     border-radius: 10px;
@@ -33,14 +33,14 @@ body {
 
 .function-keys {
     display: flex;
-    gap: 5px;
+    gap: 7.5px;
 }
 
 .rest-buttons {
-    margin-top: 5px;
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 7.5px;
 }
 
 .normal-button,
@@ -83,7 +83,7 @@ body {
 }
 
 .normal-button {
-    width: 96.25px;
+    width: 94.375px;
     height: 80px;
 }
 
