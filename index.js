@@ -1,3 +1,20 @@
+const operator_keys = document.querySelectorAll('.operator');
+const number_keys = document.querySelectorAll('.number');
+const clear_key = document.querySelector('#clear-button');
+const evaluate_key = document.querySelector('#evaluate');
+const upper_screen = document.querySelector('.upper-screen');
+const lower_screen = document.querySelector('.lower-screen')
+const delete_key = document.querySelector('#delete-button');
+
+
+let num1 = null;
+let num2 = null;
+let operator = null;
+let operatorClicked = false;
+let num1inChange = false;
+let num2inChange = false;
+
+
 function add(num1, num2){
     return num1 + num2;
 }
@@ -28,18 +45,20 @@ function evaluate(num1, num2, operator){
 }
 
 
-let num1 = null;
-let num2 = null;
-let operator = null;
-let operatorClicked = false;
-
-
 function setNums(number){
-    if (num1 === null){
+    if (num1 === null && num2 === null){
         num1 = number
-    } else {
-        num2 = number
-    }
+    } else if (num2 === null && operator === null){
+        num1 = num1.toString();
+        num1 += number.toString();
+        num1 = +num1;
+    } else if (num2 === null && operator !== null){
+        num2 = number;
+    }  else if (num2 !== null && operator !== null){
+        num2 = num2.toString();
+        num2 += number.toString();
+        num2 = +num2;
+}
 }
 
 function generateScreenMessagesNM(){
@@ -76,7 +95,6 @@ function setScreenMessages(upper_text, bottom_text){
 }
 
 
-const operator_keys = document.querySelectorAll('.operator');
 operator_keys.forEach(element => {
     element.addEventListener('click', (event) => {
         operator = element.textContent;
@@ -86,7 +104,6 @@ operator_keys.forEach(element => {
 })
 
 
-const number_keys = document.querySelectorAll('.number');
 number_keys.forEach(element => {
     element.addEventListener('click', (event) => {
         setNums(element.textContent);
@@ -97,7 +114,7 @@ number_keys.forEach(element => {
     })
 })
 
-evaluate_key = document.querySelector('#evaluate');
+
 evaluate_key.addEventListener('click', (event) => {
     if (num1 !== null && num2 !== null && operator !== null){
         let result = evaluate(num1, num2, operator);
@@ -112,7 +129,6 @@ evaluate_key.addEventListener('click', (event) => {
 })
 
 
-clear_key = document.querySelector('#clear-button');
 clear_key.addEventListener('click', (event) => {
     num1 = null;
     num2 = null;
@@ -121,5 +137,4 @@ clear_key.addEventListener('click', (event) => {
     lower_screen.textContent = "";
 })
 
-upper_screen = document.querySelector('.upper-screen');
-lower_screen = document.querySelector('.lower-screen')
+
