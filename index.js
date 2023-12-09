@@ -59,6 +59,10 @@ function setNums(number){
 }
 
 
+function roundNumber(number){
+    return Math.round(number * 100000)/100000
+}
+
 function removeDigit(){
     if (num2 !== null && num1 !== null){
         num2 = num2.slice(0, -1);
@@ -122,6 +126,7 @@ number_keys.forEach(element => {
 evaluate_key.addEventListener('click', (event) => {
     if (num1 !== null && num2 !== null && operator !== null){
         let result = evaluate(+num1, +num2, operator);
+        result = roundNumber(result);
         const screenMessages = generateScreenMessagesEqual(result);
         setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
         num1 = result.toString();
