@@ -5,6 +5,7 @@ const evaluate_key = document.querySelector('#evaluate');
 const upper_screen = document.querySelector('.upper-screen');
 const lower_screen = document.querySelector('.lower-screen')
 const delete_key = document.querySelector('#delete-button');
+const decimal_key = document.querySelector('#decimal');
 
 
 let num1 = null;
@@ -47,27 +48,21 @@ function evaluate(num1, num2, operator){
 
 function setNums(number){
     if (num1 === null && num2 === null){
-        num1 = number
+        num1 = number.toString();
     } else if (num2 === null && operator === null){
-        num1 = num1.toString();
         num1 += number.toString();
-        num1 = +num1;
     } else if (num2 === null && operator !== null){
-        num2 = number;
+        num2 = number.toString();
     }  else if (num2 !== null && operator !== null){
-        num2 = num2.toString();
         num2 += number.toString();
-        num2 = +num2;
     }
 }
 
 
 function removeDigit(){
     if (num2 !== null && num1 !== null){
-        num2 = num2.toString();
         num2 = num2.slice(0, -1);
     } else if (num2 === null && num1 !== null){
-        num1 = num1.toString();
         num1 = num1.slice(0, -1);
     }
 }
@@ -119,22 +114,19 @@ number_keys.forEach(element => {
     element.addEventListener('click', (event) => {
         setNums(element.textContent);
         const screenMessages = generateScreenMessagesNM();
-        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen)
-        console.log(num1);
-        console.log(num2);
+        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
     })
 })
 
 
 evaluate_key.addEventListener('click', (event) => {
     if (num1 !== null && num2 !== null && operator !== null){
-        let result = evaluate(num1, num2, operator);
+        let result = evaluate(+num1, +num2, operator);
         const screenMessages = generateScreenMessagesEqual(result);
         setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
-        num1 = result;
+        num1 = result.toString();
         num2 = null;
         operator = null;
-        console.log(result);
     }
     
 })
@@ -154,4 +146,10 @@ delete_key.addEventListener('click', (event) => {
     setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen)
 })
 
+
+decimal_key.addEventListener('click', (event) => {
+    setNums(decimal_key.textContent);
+    const screenMessages = generateScreenMessagesNM();
+    setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
+})
 
