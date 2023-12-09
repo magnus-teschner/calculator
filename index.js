@@ -139,7 +139,8 @@ evaluate_key.addEventListener('click', (event) => {
             result = roundNumber(result);
             const screenMessages = generateScreenMessagesEqual(result);
             setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
-            clearScreen();
+            num2 = null;
+            operator = null;
             num1 = result.toString();
         }        
     }  
