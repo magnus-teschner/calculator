@@ -58,7 +58,18 @@ function setNums(number){
         num2 = num2.toString();
         num2 += number.toString();
         num2 = +num2;
+    }
 }
+
+
+function removeDigit(){
+    if (num2 !== null && num1 !== null){
+        num2 = num2.toString();
+        num2 = num2.slice(0, -1);
+    } else if (num2 === null && num1 !== null){
+        num1 = num1.toString();
+        num1 = num1.slice(0, -1);
+    }
 }
 
 function generateScreenMessagesNM(){
@@ -128,13 +139,19 @@ evaluate_key.addEventListener('click', (event) => {
     
 })
 
-
 clear_key.addEventListener('click', (event) => {
     num1 = null;
     num2 = null;
     operator = null;
     upper_screen.textContent = "";
     lower_screen.textContent = "";
+})
+
+
+delete_key.addEventListener('click', (event) => {
+    removeDigit();
+    const screenMessages = generateScreenMessagesNM();
+    setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen)
 })
 
 
