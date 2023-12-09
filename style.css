@@ -20,15 +20,19 @@ body {
     border: 2px solid black;
     border-radius: 5px;
     padding: 5px;
-    height: 75px
+    height: 75px;
+    display: flex;
+    flex-direction: column;
 }
 
-.current-screen {
+.lower-screen {
     font-size: 40px;
+    height: 46px;
 }
 
-.prev-screen {
+.upper-screen {
     font-size: 32px;
+    height: 37px;
 }
 
 .function-keys {
