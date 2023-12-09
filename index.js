@@ -98,7 +98,6 @@ function generateScreenMessagesEqual(result){
 }
 
 function setScreenMessages(upper_text, bottom_text){
-    console.log(upper_text);
     upper_screen.textContent = upper_text;
     lower_screen.textContent = bottom_text;
 
@@ -116,6 +115,9 @@ function evaluateWrapper(){
     if (num1 !== null && num2 !== null && operator !== null){
         let result = evaluate(+num1, +num2, operator);
         result = roundNumber(result);
+        if (!result.toString().includes('.')){
+            decimal_key.disabled = false;
+        }
         const screenMessages = generateScreenMessagesEqual(result);
         setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
         num2 = null;
@@ -127,12 +129,13 @@ function evaluateWrapper(){
 
 operator_keys.forEach(element => {
     element.addEventListener('click', (event) => {
+        decimal_key.disabled = false;
         if (num1 !== null & num2 !== null && operator !== null){
             evaluateWrapper()
         }
         operator = element.textContent;
         const screenMessages = generateScreenMessagesNM();
-        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen)
+        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
     })
 })
 
@@ -148,6 +151,8 @@ number_keys.forEach(element => {
 
 evaluate_key.addEventListener('click', (event) => {
     evaluateWrapper();
+    if (!num1.includes('.')){
+    }
 })
 
 clear_key.addEventListener('click', (event) => {
@@ -162,9 +167,11 @@ delete_key.addEventListener('click', (event) => {
 })
 
 
+
+
 decimal_key.addEventListener('click', (event) => {
     setNums(decimal_key.textContent);
+    decimal_key.disabled = true;
     const screenMessages = generateScreenMessagesNM();
     setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
 })
-
