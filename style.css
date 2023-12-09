@@ -1,0 +1,89 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.calculator {
+    width: 400px;
+    background-color: #AAAAAA;
+    padding: 7.5px;
+    margin-top: 15px;
+    border: 2px solid black; 
+    border-radius: 10px;
+}
+
+.screen {
+    background-color: #EEEEEE;
+    color: black;
+    text-align: right;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    height: 75px
+}
+
+.current-screen {
+    font-size: 40px;
+}
+
+.prev-screen {
+    font-size: 32px;
+}
+
+.function-keys {
+    display: flex;
+    gap: 5px;
+}
+
+.rest-buttons {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.normal-button,
+.half-button {
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.normal-button:hover {
+    background-color: #DDDDDD;
+}
+
+#clear-button {
+    background-color: #ECAEAC;
+}
+
+#clear-button:hover {
+    background-color: #DB9D9B;
+}
+
+#delete-button {
+    background-color: #ADABF9;
+}
+
+#delete-button:hover {
+    background-color: #9C9AE8;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.half-button {
+    width: 200px;
+    height: 80px;
+}
+
+.normal-button {
+    width: 96.25px;
+    height: 80px;
+}
+
