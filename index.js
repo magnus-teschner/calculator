@@ -163,7 +163,7 @@ clear_key.addEventListener('click', (event) => {
 delete_key.addEventListener('click', (event) => {
     removeDigit();
     const screenMessages = generateScreenMessagesNM();
-    setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen)
+    setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
 })
 
 
@@ -174,4 +174,40 @@ decimal_key.addEventListener('click', (event) => {
     decimal_key.disabled = true;
     const screenMessages = generateScreenMessagesNM();
     setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
+})
+
+
+window.addEventListener('keydown', (event) => {
+    let key = event.key;
+    if (key >= 1 && key <= 9){
+        setNums(key);
+        const screenMessages = generateScreenMessagesNM();
+        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);3
+    } else if (key === '.'){
+        setNums(key);
+        decimal_key.disabled = true;
+        const screenMessages = generateScreenMessagesNM();
+        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
+
+    } else if (key==='Backspace'){
+        removeDigit();
+        const screenMessages = generateScreenMessagesNM();
+        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
+
+    } else if (key === 'Escape'){
+        clearScreen();
+    } else if (key === 'Enter'){
+        evaluateWrapper();
+        if (!num1.includes('.')){
+        }
+    } else if (key === '/' || key === '*' || key === '+' || key === '-'){
+        decimal_key.disabled = false;
+        if (num1 !== null & num2 !== null && operator !== null){
+            evaluateWrapper()
+        }
+        operator = key;
+        const screenMessages = generateScreenMessagesNM();
+        setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
+
+    }
 })
