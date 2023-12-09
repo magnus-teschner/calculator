@@ -112,8 +112,27 @@ function clearScreen(){
     lower_screen.textContent = "";
 }
 
+function evaluateWrapper(){
+    if (num1 !== null && num2 !== null && operator !== null){
+        let result = evaluate(+num1, +num2, operator);
+        if (result === "NaN"){
+            clearScreen();
+        } else{
+            result = roundNumber(result);
+            const screenMessages = generateScreenMessagesEqual(result);
+            setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
+            num2 = null;
+            operator = null;
+            num1 = result.toString();
+        }        
+    }  
+}
+
 operator_keys.forEach(element => {
     element.addEventListener('click', (event) => {
+        if (num1 !== null & num2 !== null && operator !== null){
+            evaluateWrapper()
+        }
         operator = element.textContent;
         const screenMessages = generateScreenMessagesNM();
         setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen)
@@ -131,19 +150,7 @@ number_keys.forEach(element => {
 
 
 evaluate_key.addEventListener('click', (event) => {
-    if (num1 !== null && num2 !== null && operator !== null){
-        let result = evaluate(+num1, +num2, operator);
-        if (result === "NaN"){
-            clearScreen();
-        } else{
-            result = roundNumber(result);
-            const screenMessages = generateScreenMessagesEqual(result);
-            setScreenMessages(screenMessages.upper_screen, screenMessages.lower_screen);
-            num2 = null;
-            operator = null;
-            num1 = result.toString();
-        }        
-    }  
+    evaluateWrapper();
 })
 
 clear_key.addEventListener('click', (event) => {
