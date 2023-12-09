@@ -8,6 +8,7 @@ body {
 }
 
 .calculator {
+    max-width: 400px;
     width: 400px;
     background-color: #AAAAAA;
     padding: 10px;
@@ -23,19 +24,20 @@ body {
     border: 2px solid black;
     border-radius: 5px;
     padding: 5px;
-    height: 75px;
     display: flex;
     flex-direction: column;
+    word-wrap: break-word;
+    flex-grow: 1;
 }
 
 .lower-screen {
     font-size: 40px;
-    height: 46px;
+    min-height: 46px;
 }
 
 .upper-screen {
     font-size: 32px;
-    height: 37px;
+    min-height: 37px;
 }
 
 .function-keys {
